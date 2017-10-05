@@ -10,4 +10,10 @@
 
 @interface Doctor : NSObject
 
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSString *specialization;
+
+-(instancetype)initWithName:(NSString *)name
+          andSpecialization:(NSString *)specialization;
+
 @end

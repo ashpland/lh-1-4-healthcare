@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		49DD911B1F86D34F00ED443A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD911A1F86D34F00ED443A /* main.m */; };
+		49DD91231F86D45700ED443A /* Doctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD91221F86D45700ED443A /* Doctor.m */; };
+		49DD91261F86D45F00ED443A /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DD91251F86D45F00ED443A /* Patient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,10 @@
 /* Begin PBXFileReference section */
 		49DD91171F86D34F00ED443A /* Healthcare */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Healthcare; sourceTree = BUILT_PRODUCTS_DIR; };
 		49DD911A1F86D34F00ED443A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		49DD91211F86D45700ED443A /* Doctor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Doctor.h; sourceTree = "<group>"; };
+		49DD91221F86D45700ED443A /* Doctor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Doctor.m; sourceTree = "<group>"; };
+		49DD91241F86D45F00ED443A /* Patient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Patient.h; sourceTree = "<group>"; };
+		49DD91251F86D45F00ED443A /* Patient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Patient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				49DD911A1F86D34F00ED443A /* main.m */,
+				49DD91211F86D45700ED443A /* Doctor.h */,
+				49DD91221F86D45700ED443A /* Doctor.m */,
+				49DD91241F86D45F00ED443A /* Patient.h */,
+				49DD91251F86D45F00ED443A /* Patient.m */,
 			);
 			path = Healthcare;
 			sourceTree = "<group>";
@@ -119,6 +129,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49DD91261F86D45F00ED443A /* Patient.m in Sources */,
+				49DD91231F86D45700ED443A /* Doctor.m in Sources */,
 				49DD911B1F86D34F00ED443A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

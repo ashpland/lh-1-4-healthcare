@@ -7,11 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#define NSLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#import "Patient.h"
+#import "Doctor.h"
+
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+
+        Patient *testPatient = [Patient new];
+        
+        NSLog(@"%d", testPatient.age);
+    
     }
     return 0;
 }

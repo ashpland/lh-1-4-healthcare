@@ -10,4 +10,9 @@
 
 @interface Patient : NSObject
 
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSDate *birthDate;
+
+-(instancetype)initWithName:(NSString *)name andBirthDate:(NSDate *)date;
+-(int)age;
 @end
