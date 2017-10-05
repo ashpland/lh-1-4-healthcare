@@ -47,17 +47,35 @@ int main(int argc, const char * argv[]) {
 
         NSLog(@"");
         
-        NSLog(@"1 Log: %@", testDoctor1.patients);
-        
         [testPatient1 visitDoctor:testDoctor1];
-        
-        NSLog(@"1 Log: %@", testDoctor1.patients);
-
         
         [testPatient2 visitDoctor:testDoctor2];
         NSLog(@"\n%@ moved to Saskatchewan.", testPatient3.name);
         [testPatient3 setHealthCard:NO];
         [testPatient3 visitDoctor:testDoctor1];
+        
+        NSLog(@"\n%@ was prescribed %@ by %@ for %@.",
+              testPatient1.name,
+              prescriptionString([testDoctor1 requestMedication:testPatient1]),
+              testDoctor1.name,
+              symptomString(testPatient1.symptom)
+              );
+        
+        NSLog(@"\n%@ was prescribed %@ by %@ for %@.",
+              testPatient3.name,
+              prescriptionString([testDoctor2 requestMedication:testPatient3]),
+              testDoctor2.name,
+              symptomString(testPatient3.symptom)
+              );
+        
+        NSLog(@"\n%@ was prescribed %@ by %@ for %@.",
+              testPatient2.name,
+              prescriptionString([testDoctor2 requestMedication:testPatient2]),
+              testDoctor2.name,
+              symptomString(testPatient2.symptom)
+              );
+
+
 
 
     }

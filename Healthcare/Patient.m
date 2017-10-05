@@ -32,6 +32,7 @@
         _name = name;
         _birthDate = date;
         _healthCard = true;
+        _symptom = (Symptom)arc4random_uniform(5);
     }
     return self;
 }
@@ -55,6 +56,11 @@
 -(void)visitDoctor:(Doctor *)doctor
 {
     [doctor recievePatient:self];
+}
+
+-(Symptom)giveSymptoms:(Doctor *)doctor
+{
+    return self.symptom;
 }
 
 

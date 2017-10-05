@@ -9,6 +9,18 @@
 #import <Foundation/Foundation.h>
 @class Patient;
 
+typedef enum : NSUInteger {
+    ibuprofen,
+    honey,
+    antibiotics,
+    self_care,
+    chocolate,
+    rejected,
+} Prescription;
+
+#define prescriptionString(enum) [@[@"ibuprofen",@"honey",@"antibiotics",@"self_care",@"chocolate",@"rejected"] objectAtIndex:enum]
+
+
 @interface Doctor : NSObject
 
 @property (nonatomic, readonly, strong) NSString *name;
@@ -20,4 +32,6 @@
 
 -(void)recievePatient:(Patient *)patient;
 -(bool)checkHealthCard:(Patient *)patient;
+-(Prescription)requestMedication:(Patient *)patient;
+
 @end

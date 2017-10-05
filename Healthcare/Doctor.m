@@ -54,4 +54,35 @@
     return [patient hasHealthCard];
 }
 
+-(Prescription)requestMedication:(Patient *)patient
+{
+    if ([self.patients containsObject:patient]) {
+        Symptom symptom = [patient giveSymptoms:self];
+        
+        switch (symptom) {
+            case sorethroat:
+                return honey;
+                break;
+                
+            case headache:
+            case arthritis:
+                return ibuprofen;
+                break;
+                
+            case earache:
+                return antibiotics;
+                break;
+                
+            case heartbreak:
+                return self_care;
+                
+            default:
+                return chocolate;
+                break;
+        }
+    }
+    
+    return rejected;
+}
+
 @end
