@@ -7,6 +7,9 @@
 //
 
 #import "Patient.h"
+#import "Doctor.h"
+#define NSLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
 
 @implementation Patient
 
@@ -28,8 +31,14 @@
     if (self) {
         _name = name;
         _birthDate = date;
+        _healthCard = true;
     }
     return self;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"Patient %@ is %d years old", self.name, self.age];
 }
 
 -(int)age{
@@ -42,6 +51,12 @@
     
     return (int)[breakdownInfo year];
 }
+
+-(void)visitDoctor:(Doctor *)doctor
+{
+    [doctor recievePatient:self];
+}
+
 
 
 @end

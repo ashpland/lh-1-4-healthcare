@@ -18,10 +18,8 @@ int main(int argc, const char * argv[]) {
         Patient *testPatient1 = [Patient new];
         Doctor *testDoctor1 = [Doctor new];
         
-        NSLog(@"Patient %@ is %d years old", testPatient1.name, testPatient1.age);
         
-        NSLog(@"%@ has a specialization in %@", testDoctor1.name, testDoctor1.specialization);
-        
+
         
         NSDateComponents *comps = [[NSDateComponents alloc] init];
         [comps setDay:21];
@@ -29,15 +27,37 @@ int main(int argc, const char * argv[]) {
         [comps setYear:1988];
         NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
         
-        
-        
         Patient *testPatient2 = [[Patient alloc] initWithName:@"Drew" andBirthDate:date];
+        
         Doctor *testDoctor2 = [[Doctor alloc] initWithName:@"Dr. Rutherford" andSpecialization:@"Gay Men's Health"];
+       
+        NSDateComponents *comps2 = [[NSDateComponents alloc] init];
+        [comps2 setDay:18];
+        [comps2 setMonth:03];
+        [comps2 setYear:1952];
+        NSDate *date3 = [[NSCalendar currentCalendar] dateFromComponents:comps2];
         
-        NSLog(@"Patient %@ is %d years old", testPatient2.name, testPatient2.age);
+        Patient *testPatient3 = [[Patient alloc] initWithName:@"Alan" andBirthDate:date3];
         
-        NSLog(@"%@ has a specialization in %@", testDoctor2.name, testDoctor2.specialization);
+        NSLog(@"%@", testPatient1);
+        NSLog(@"%@", testDoctor1);
+        NSLog(@"%@", testPatient2);
+        NSLog(@"%@", testDoctor2);
+        NSLog(@"%@", testPatient3);
+
+        NSLog(@"");
         
+        NSLog(@"1 Log: %@", testDoctor1.patients);
+        
+        [testPatient1 visitDoctor:testDoctor1];
+        
+        NSLog(@"1 Log: %@", testDoctor1.patients);
+
+        
+        [testPatient2 visitDoctor:testDoctor2];
+        NSLog(@"\n%@ moved to Saskatchewan.", testPatient3.name);
+        [testPatient3 setHealthCard:NO];
+        [testPatient3 visitDoctor:testDoctor1];
 
 
     }

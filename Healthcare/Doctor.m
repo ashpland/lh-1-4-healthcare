@@ -7,6 +7,12 @@
 //
 
 #import "Doctor.h"
+#import "Patient.h"
+#define NSLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
+//@interface Doctor ()
+//@property (nonatomic, readwrite, strong) NSMutableSet *patients;
+//@end
 
 @implementation Doctor
 
@@ -21,8 +27,31 @@
     if (self) {
         _name = name;
         _specialization = specialization;
+        _patients = [NSMutableSet new];
     }
     return self;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ has a specialization in %@", self.name, self.specialization];
+}
+
+-(void)recievePatient:(Patient *)patient
+{
+    if ([self checkHealthCard:patient]) {
+        if (![self.patients containsObject:patient]) {
+            [self.patients addObject:patient];
+        }
+        NSLog(@"%@ visited %@!", patient.name, self.name);
+    } else {
+        NSLog(@"%@ is not covered", patient.name);
+    }
+}
+
+-(bool)checkHealthCard:(Patient *)patient
+{
+    return [patient hasHealthCard];
 }
 
 @end
