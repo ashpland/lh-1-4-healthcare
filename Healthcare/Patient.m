@@ -13,18 +13,6 @@
 
 @implementation Patient
 
-- (instancetype)init
-{
-    
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setDay:14];
-    [comps setMonth:05];
-    [comps setYear:1997];
-    NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
-    
-    return [self initWithName:@"Barbie Girl" andBirthDate:date];
-}
-
 -(instancetype)initWithName:(NSString *)name andBirthDate:(NSDate *)date
 {
     self = [super init];

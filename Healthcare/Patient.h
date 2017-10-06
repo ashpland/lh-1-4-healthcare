@@ -20,7 +20,6 @@
 @property (nonatomic, readonly, strong) NSString *name;
 @property (nonatomic, readonly, strong) NSDate *birthDate;
 @property (nonatomic, readwrite, getter=hasHealthCard) bool healthCard;
-@property (nonatomic, readwrite)Symptom symptom;
 
 
 -(instancetype)initWithName:(NSString *)name andBirthDate:(NSDate *)date;

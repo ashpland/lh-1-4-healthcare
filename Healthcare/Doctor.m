@@ -43,9 +43,9 @@
         if (![self.patients containsObject:patient]) {
             [self.patients addObject:patient];
         }
-        NSLog(@"%@ visited %@!", patient.name, self.name);
+        NSLog(@"\n%@ visited %@!", patient.name, self.name);
     } else {
-        NSLog(@"%@ is not covered", patient.name);
+        NSLog(@"\n%@ is not covered", patient.name);
     }
 }
 
@@ -84,6 +84,7 @@
                 
             case heartbreak:
                 prescription = self_care;
+                break;
                 
             default:
                 prescription = chocolate;
@@ -99,7 +100,7 @@
         return prescription;
         
     }
-    
+    NSLog(@"%@'s request for medication was rejected.", patient);
     return rejected;
 }
 

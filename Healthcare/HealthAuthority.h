@@ -20,10 +20,6 @@ typedef enum : NSUInteger {
     rejected,
 } Prescription;
 
-#define prescriptionString(enum) [@[@"ibuprofen",@"honey",@"antibiotics",@"self_care",@"chocolate",@"rejected"] objectAtIndex:enum]
-#define symptomString(enum) [@[@"headache",@"sorethroat",@"arthritis",@"earache",@"heartbreak"] objectAtIndex:enum]
-
-
 typedef enum : NSUInteger {
     headache,
     sorethroat,
@@ -31,6 +27,12 @@ typedef enum : NSUInteger {
     earache,
     heartbreak,
 } Symptom;
+
+#define prescriptionString(enum) [@[@"ibuprofen",@"honey",@"antibiotics",@"self_care",@"chocolate",@"rejected"] objectAtIndex:enum]
+#define symptomString(enum) [@[@"headache",@"sorethroat",@"arthritis",@"earache",@"heartbreak"] objectAtIndex:enum]
+
+
+
 
 @interface HealthAuthority : NSObject
 

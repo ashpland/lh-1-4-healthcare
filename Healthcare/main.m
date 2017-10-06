@@ -18,19 +18,31 @@ int main(int argc, const char * argv[]) {
 
         HealthAuthority *vch = [HealthAuthority new];
         
-        Patient *testPatient1 = [Patient new];
+
+       
+        NSDateComponents *comps0 = [[NSDateComponents alloc] init];
+        [comps0 setDay:14];
+        [comps0 setMonth:05];
+        [comps0 setYear:1997];
+        NSDate *date0 = [[NSCalendar currentCalendar] dateFromComponents:comps0];
+            
+        Patient *testPatient1 = [[Patient alloc] initWithName:@"Barbie Girl" andBirthDate:date0];
+        
+        
+        
+        
         Doctor *testDoctor1 = [[Doctor alloc]
                                initWithName:@"Dr. Jones"
                                andSpecialization:@"Archaeology"
                                inHealthAuthority:vch];
 
-        NSDateComponents *comps = [[NSDateComponents alloc] init];
-        [comps setDay:21];
-        [comps setMonth:03];
-        [comps setYear:1988];
-        NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
+        NSDateComponents *comps1 = [[NSDateComponents alloc] init];
+        [comps1 setDay:21];
+        [comps1 setMonth:03];
+        [comps1 setYear:1988];
+        NSDate *date1 = [[NSCalendar currentCalendar] dateFromComponents:comps1];
         
-        Patient *testPatient2 = [[Patient alloc] initWithName:@"Drew" andBirthDate:date];
+        Patient *testPatient2 = [[Patient alloc] initWithName:@"Drew" andBirthDate:date1];
         
         Doctor *testDoctor2 = [[Doctor alloc]
                                initWithName:@"Dr. Rutherford"
@@ -41,76 +53,25 @@ int main(int argc, const char * argv[]) {
         [comps2 setDay:18];
         [comps2 setMonth:03];
         [comps2 setYear:1952];
-        NSDate *date3 = [[NSCalendar currentCalendar] dateFromComponents:comps2];
+        NSDate *date2 = [[NSCalendar currentCalendar] dateFromComponents:comps2];
         
-        Patient *testPatient3 = [[Patient alloc] initWithName:@"Alan" andBirthDate:date3];
-        
-        
+        Patient *testPatient3 = [[Patient alloc] initWithName:@"Alan" andBirthDate:date2];
         
         
-        /*
-        NSLog(@"%@\n", testPatient1);
-        NSLog(@"%@\n", testDoctor1);
-        NSLog(@"%@\n", testPatient2);
-        NSLog(@"%@\n", testDoctor2);
-        NSLog(@"%@\n", testPatient3);
-
-        NSLog(@"");
-        
-        [testPatient1 visitDoctor:testDoctor1];
-        
-        [testPatient2 visitDoctor:testDoctor2];
-        NSLog(@"\n%@ moved to Saskatchewan.", testPatient3.name);
-        [testPatient3 setHealthCard:NO];
-        [testPatient3 visitDoctor:testDoctor1];
-        
-        NSLog(@"\n%@ was prescribed %@ by %@ for %@.",
-              testPatient1.name,
-              prescriptionString([testDoctor1 requestMedication:testPatient1]),
-              testDoctor1.name,
-              symptomString(testPatient1.symptom)
-              );
-        
-        NSLog(@"\n%@ was prescribed %@ by %@ for %@.",
-              testPatient3.name,
-              prescriptionString([testDoctor2 requestMedication:testPatient3]),
-              testDoctor2.name,
-              symptomString(testPatient3.symptom)
-              );
-        
-        NSLog(@"\n%@ was prescribed %@ by %@ for %@.",
-              testPatient2.name,
-              prescriptionString([testDoctor2 requestMedication:testPatient2]),
-              testDoctor2.name,
-              symptomString(testPatient2.symptom)
-              );
-         */
 
         
         [testPatient1 visitDoctor:testDoctor1];
-        NSLog(@"");
         [testPatient2 visitDoctor:testDoctor2];
-        NSLog(@"");
         [testPatient2 visitDoctor:testDoctor1];
-        NSLog(@"");
         [testPatient3 setHealthCard:NO];
         [testPatient3 visitDoctor:testDoctor1];
-        NSLog(@"");
+        [testDoctor1 requestMedication:testPatient3];
         [testDoctor1 requestMedication:testPatient1];
-        NSLog(@"");
         [testDoctor2 requestMedication:testPatient3];
-        NSLog(@"");
         [testDoctor2 requestMedication:testPatient2];
-        NSLog(@"");
         [testDoctor1 requestMedication:testPatient2];
-        NSLog(@"");
         [testDoctor2 requestMedication:testPatient2];
-        NSLog(@"");
         [testDoctor1 requestMedication:testPatient2];
-
-        
-        
-        
         
         
 
