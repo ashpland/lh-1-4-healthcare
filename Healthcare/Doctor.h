@@ -7,28 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HealthAuthority.h"
 @class Patient;
 
-typedef enum : NSUInteger {
-    ibuprofen,
-    honey,
-    antibiotics,
-    self_care,
-    chocolate,
-    rejected,
-} Prescription;
 
-#define prescriptionString(enum) [@[@"ibuprofen",@"honey",@"antibiotics",@"self_care",@"chocolate",@"rejected"] objectAtIndex:enum]
 
 
 @interface Doctor : NSObject
 
 @property (nonatomic, readonly, strong) NSString *name;
 @property (nonatomic, readonly, strong) NSString *specialization;
-@property (nonatomic, readwrite, strong) NSMutableSet *patients;
+@property (nonatomic, readonly, weak) HealthAuthority *healthAuthority;
 
 -(instancetype)initWithName:(NSString *)name
-          andSpecialization:(NSString *)specialization;
+          andSpecialization:(NSString *)specialization
+          inHealthAuthority:(HealthAuthority *)healthAuthority;
 
 -(void)recievePatient:(Patient *)patient;
 -(bool)checkHealthCard:(Patient *)patient;

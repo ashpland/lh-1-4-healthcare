@@ -8,33 +8,33 @@
 
 #import "Doctor.h"
 #import "Patient.h"
+#import "PrescriptionRecord.h"
 #define NSLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 
-//@interface Doctor ()
-//@property (nonatomic, readwrite, strong) NSMutableSet *patients;
-//@end
+@interface Doctor ()
+@property (nonatomic, readwrite, strong) NSMutableSet *patients;
+@end
 
 @implementation Doctor
 
-- (instancetype)init
-{
-    return [self initWithName:@"Dr. Jones" andSpecialization:@"Archaeology"];
-}
-
--(instancetype)initWithName:(NSString *)name andSpecialization:(NSString *)specialization
+-(instancetype)initWithName:(NSString *)name
+          andSpecialization:(NSString *)specialization
+          inHealthAuthority:(HealthAuthority *)healthAuthority
 {
     self = [super init];
     if (self) {
         _name = name;
         _specialization = specialization;
         _patients = [NSMutableSet new];
+        [healthAuthority registerWithHealthAuthority:self];
+        _healthAuthority = healthAuthority;
     }
     return self;
 }
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ has a specialization in %@", self.name, self.specialization];
+    return [NSString stringWithFormat:@"%@", self.name];
 }
 
 -(void)recievePatient:(Patient *)patient
@@ -57,29 +57,47 @@
 -(Prescription)requestMedication:(Patient *)patient
 {
     if ([self.patients containsObject:patient]) {
+        
+        [self recievePatient:patient];
+        
+        NSMutableArray<PrescriptionRecord *> *pastRecords = [self.healthAuthority retrieveRecord:patient forDoctor:self];
+        
+        NSLog(@"Past Records for %@: %@", patient, pastRecords);
+        
         Symptom symptom = [patient giveSymptoms:self];
+        
+        Prescription prescription;
         
         switch (symptom) {
             case sorethroat:
-                return honey;
+                prescription = honey;
                 break;
                 
             case headache:
             case arthritis:
-                return ibuprofen;
+                prescription = ibuprofen;
                 break;
                 
             case earache:
-                return antibiotics;
+                prescription = antibiotics;
                 break;
                 
             case heartbreak:
-                return self_care;
+                prescription = self_care;
                 
             default:
-                return chocolate;
+                prescription = chocolate;
                 break;
         }
+        
+        PrescriptionRecord *newRecord = [[PrescriptionRecord alloc] initWithDoctor:self symptom:symptom andPrescription:prescription];
+        
+        NSLog(@"New Record: %@", newRecord);
+        
+        [self.healthAuthority recieveRecord:newRecord forPatient:patient];
+        
+        return prescription;
+        
     }
     
     return rejected;

@@ -10,17 +10,20 @@
 #define NSLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 #import "Patient.h"
 #import "Doctor.h"
+#import "HealthAuthority.h"
 
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
 
+        HealthAuthority *vch = [HealthAuthority new];
+        
         Patient *testPatient1 = [Patient new];
-        Doctor *testDoctor1 = [Doctor new];
-        
-        
+        Doctor *testDoctor1 = [[Doctor alloc]
+                               initWithName:@"Dr. Jones"
+                               andSpecialization:@"Archaeology"
+                               inHealthAuthority:vch];
 
-        
         NSDateComponents *comps = [[NSDateComponents alloc] init];
         [comps setDay:21];
         [comps setMonth:03];
@@ -29,7 +32,10 @@ int main(int argc, const char * argv[]) {
         
         Patient *testPatient2 = [[Patient alloc] initWithName:@"Drew" andBirthDate:date];
         
-        Doctor *testDoctor2 = [[Doctor alloc] initWithName:@"Dr. Rutherford" andSpecialization:@"Gay Men's Health"];
+        Doctor *testDoctor2 = [[Doctor alloc]
+                               initWithName:@"Dr. Rutherford"
+                               andSpecialization:@"Gay Men's Health"
+                               inHealthAuthority:vch];
        
         NSDateComponents *comps2 = [[NSDateComponents alloc] init];
         [comps2 setDay:18];
@@ -39,11 +45,15 @@ int main(int argc, const char * argv[]) {
         
         Patient *testPatient3 = [[Patient alloc] initWithName:@"Alan" andBirthDate:date3];
         
-        NSLog(@"%@", testPatient1);
-        NSLog(@"%@", testDoctor1);
-        NSLog(@"%@", testPatient2);
-        NSLog(@"%@", testDoctor2);
-        NSLog(@"%@", testPatient3);
+        
+        
+        
+        /*
+        NSLog(@"%@\n", testPatient1);
+        NSLog(@"%@\n", testDoctor1);
+        NSLog(@"%@\n", testPatient2);
+        NSLog(@"%@\n", testDoctor2);
+        NSLog(@"%@\n", testPatient3);
 
         NSLog(@"");
         
@@ -74,9 +84,35 @@ int main(int argc, const char * argv[]) {
               testDoctor2.name,
               symptomString(testPatient2.symptom)
               );
+         */
 
+        
+        [testPatient1 visitDoctor:testDoctor1];
+        NSLog(@"");
+        [testPatient2 visitDoctor:testDoctor2];
+        NSLog(@"");
+        [testPatient2 visitDoctor:testDoctor1];
+        NSLog(@"");
+        [testPatient3 setHealthCard:NO];
+        [testPatient3 visitDoctor:testDoctor1];
+        NSLog(@"");
+        [testDoctor1 requestMedication:testPatient1];
+        NSLog(@"");
+        [testDoctor2 requestMedication:testPatient3];
+        NSLog(@"");
+        [testDoctor2 requestMedication:testPatient2];
+        NSLog(@"");
+        [testDoctor1 requestMedication:testPatient2];
+        NSLog(@"");
+        [testDoctor2 requestMedication:testPatient2];
+        NSLog(@"");
+        [testDoctor1 requestMedication:testPatient2];
 
-
+        
+        
+        
+        
+        
 
     }
     return 0;

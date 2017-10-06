@@ -7,17 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HealthAuthority.h"
+
 @class Doctor;
 
-typedef enum : NSUInteger {
-    headache,
-    sorethroat,
-    arthritis,
-    earache,
-    heartbreak,
-} Symptom;
 
-#define symptomString(enum) [@[@"headache",@"sorethroat",@"arthritis",@"earache",@"heartbreak"] objectAtIndex:enum]
 
 
 

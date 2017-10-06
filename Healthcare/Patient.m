@@ -32,14 +32,13 @@
         _name = name;
         _birthDate = date;
         _healthCard = true;
-        _symptom = (Symptom)arc4random_uniform(5);
     }
     return self;
 }
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"Patient %@ is %d years old", self.name, self.age];
+    return [NSString stringWithFormat:@"%@", self.name];
 }
 
 -(int)age{
@@ -60,7 +59,7 @@
 
 -(Symptom)giveSymptoms:(Doctor *)doctor
 {
-    return self.symptom;
+    return (Symptom)arc4random_uniform(5);
 }
 
 
